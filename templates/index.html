@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tasks
+{% endblock %}
+
+{% block main %}
+    <form action="/" method="post">
+        <div class="form-group">
+            <input autocomplete="off" name="task" placeholder="Task" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    <br>
+    <h1>
+        Current Tasks
+    </h1>
+    <table class = "table1">
+        <tr>
+            <th class = "td1">Task</th>
+            <th class = "td1">Remove</th>
+            <th class = "td1">Finish</th>
+        </tr>
+    {% for task in tasks %}
+        <tr>
+            <td class = "td1">{{ task[0] }}</td>
+            <td class = "td1"><a href="/remove/{{ task[1] }}">Remove</a></td>
+            <td class = "td1"><a href="/finish/{{ task[1] }}">Finish</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+    <br>
+    <br>
+    <h1>
+        Finished Tasks
+    </h1>
+    <table class = "table1">
+        <tr>
+            <th class = 'td1'>Task</th>
+            <th class = 'td1'>Time Finished</th>
+        </tr>
+        {% for finish in finished %}
+        <tr>
+            <td class = 'td1'>{{ finish[0] }}</td>
+            <td class = 'td1'>{{ finish[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

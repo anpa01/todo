@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Admin
+{% endblock %}
+
+{% block main %}
+    <h1>
+        Everyone's Tasks
+    </h1>
+    <table class = "table1">
+        <tr>
+            <th class = "td1">User</th>
+            <th class = "td1">Non Completed Tasks</th>
+            <th class = "td1">Finished Tasks</th>
+            <th class = "td1">Block or Unblock</th>
+        </tr>
+    {% for info in infos %}
+        <tr>
+            <td class = "td1">{{ info[0] }}</td>
+            <td class = "td1">{{ info[1] }}</td>
+            <td class = "td1">{{ info[2] }}</td>
+            {% if info[3] == 0 %}
+            <td class = "td1"><a href="/block/{{ info[0] }}">Block</a></td>
+            {% elif info[3] == 1 %}
+            <td class = "td1"><a href="/unblock/{{ info[0] }}">Unblock</a></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+{% endblock %}
